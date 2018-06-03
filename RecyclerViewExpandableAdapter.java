@@ -11,7 +11,7 @@ public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter
 
     public boolean isParentExpanded(int position) {
         Long id = expandedPositions.get(position);
-        return id != null && id == getItemId(position);
+        return id != null && id == getGroupId(position);
     }
 
     public void collapseParent(int position) {
