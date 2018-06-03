@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 
 public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public void resetExpanded() {
+        expandedPositions.clear();
+    }
+
     public boolean isParentExpanded(int position) {
         Long id = expandedPositions.get(position);
         return id != null && id == getGroupId(position);
