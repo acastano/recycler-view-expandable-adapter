@@ -1,4 +1,4 @@
-package com.oddschecker.app.ui.views.common;
+package com.andrescastano.ui.common;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public boolean isParentExpanded(int position) {
-        return expandedPositions.get(position) != null;
+        Long id = expandedPositions.get(position);
+        return id != null && id == getItemId(position);
     }
 
     public void collapseParent(int position) {
@@ -22,12 +23,10 @@ public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter
     }
 
     private class Parent {
-        private final long id;
         private final int parentPosition;
         private final boolean isExpanded;
 
-        Parent(int parentPosition, boolean isExpanded, long id) {
-            this.id = id;
+        Parent(int parentPosition, boolean isExpanded) {
             this.isExpanded = isExpanded;
             this.parentPosition = parentPosition;
         }
@@ -82,7 +81,7 @@ public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter
         for (int i = 0; i < groupCount; i++) {
             int position = i + totalChildCount;
 
-            Parent parent = new Parent(i, isParentExpanded(i), getGroupId(i));
+            Parent parent = new Parent(i, isParentExpanded(i));
             parentPositions.put(position, parent);
 
             int count = getChildrenCount(i);
