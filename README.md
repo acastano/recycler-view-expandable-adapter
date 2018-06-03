@@ -1,0 +1,1 @@
+# recycler-view-expandable-adapter
