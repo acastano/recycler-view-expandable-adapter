@@ -16,7 +16,6 @@ public abstract class RecyclerViewExpandableAdapter extends RecyclerView.Adapter
             @Override
             public void onChanged() {
                 calculatePositions();
-                Log.d(RecyclerViewExpandableAdapter.class.getCanonicalName(), "Data Changed");
                 super.onChanged();
             }
         };
